@@ -22,19 +22,24 @@ class OpenRouterAIService:
         self.db = get_database()
         
         # Initialize OpenRouter client (using OpenAI SDK with custom base URL)
+        self.client = None
         try:
-            self.client = AsyncOpenAI(
-                api_key=os.getenv("OPENROUTER_API_KEY"),
-                base_url=os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"),
-                timeout=60.0
-            )
+            api_key = os.getenv("OPENROUTER_API_KEY")
+            if not api_key:
+                print("❌ Warning: OPENROUTER_API_KEY not found in environment")
+                self.client = None
+            else:
+                self.client = AsyncOpenAI(
+                    api_key=api_key,
+                    base_url=os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"),
+                    timeout=60.0
+                )
+                print("✅ OpenRouter client initialized successfully")
         except Exception as e:
-            print(f"Warning: Failed to initialize OpenAI client: {e}")
-            # Fallback initialization without problematic parameters
-            self.client = AsyncOpenAI(
-                api_key=os.getenv("OPENROUTER_API_KEY"),
-                base_url=os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
-            )
+            print(f"❌ Warning: Failed to initialize OpenRouter client: {e}")
+            print("❌ Continuing without OpenRouter AI - will use fallback generation")
+            # Do NOT attempt another AsyncOpenAI initialization
+            self.client = None
         
         # AI Model configuration
         self.primary_model = os.getenv("DEFAULT_AI_MODEL", "anthropic/claude-3-haiku")
@@ -1078,5 +1083,95 @@ STUDY TIPS:
                 "error": str(e)
             }
 
-# Create singleton instance
-openrouter_ai_service = OpenRouterAIService()
+# Create singleton instance with safe error handling
+try:
+    openrouter_ai_service = OpenRouterAIService()
+    print("✅ OpenRouter AI service singleton created successfully")
+except Exception as e:
+    print(f"❌ CRITICAL: Failed to create OpenRouter AI service: {e}")
+    print("❌ Creating fallback service to prevent application crash")
+    
+    # Create a minimal fallback service
+    class FallbackOpenRouterService:
+        def __init__(self):
+            self.client = None
+            self.primary_model = "fallback"
+            self.backup_model = "fallback"  
+            self.max_tokens = 4000
+            print("⚠️ Using fallback OpenRouter service - AI features will be limited")
+        
+        async def generate_comprehensive_notes(self, content, resource_metadata, notes_type="detailed", focus_areas=None, additional_instructions=""):
+            title = resource_metadata.get('title', 'resource')
+            subject = resource_metadata.get('subject_area', 'general studies')
+            return {
+                "summary": f"Study notes for {title} in {subject}. (Advanced AI temporarily unavailable)",
+                "key_points": [
+                    f"Content from {title}",
+                    f"Subject: {subject}",
+                    "Advanced AI analysis temporarily unavailable",
+                    "Basic content extraction performed"
+                ],
+                "vocabulary": ["study", "learning", "education", "notes"],
+                "questions": ["What are the main concepts?", "How can this be applied?"],
+                "detailed_content": content[:1500] + "..." if len(content) > 1500 else content,
+                "ai_enhanced": False,
+                "model_used": "Basic Fallback Service"
+            }
+        
+        async def generate_lesson_plan(self, request, resource_context=""):
+            from models.lesson_model import GeneratedLesson, LessonSection
+            from datetime import datetime
+            
+            return GeneratedLesson(
+                title=f"Lesson Plan: {request.topic}",
+                topic=request.topic,
+                subject_area=request.subject_area,
+                grade_level=request.grade_level,
+                duration_minutes=request.duration_minutes,
+                lesson_type=request.lesson_type,
+                difficulty=request.difficulty,
+                learning_objectives=[f"Students will understand {request.topic}"],
+                lesson_overview=f"This lesson covers {request.topic} for {request.grade_level} students.",
+                sections=[
+                    LessonSection(
+                        title="Introduction",
+                        content=f"Introduction to {request.topic}",
+                        duration_minutes=10,
+                        activities=["Discussion", "Overview"],
+                        materials_needed=["Basic teaching materials"]
+                    ),
+                    LessonSection(
+                        title="Main Content",
+                        content=f"Core content and concepts for {request.topic}",
+                        duration_minutes=request.duration_minutes - 20,
+                        activities=["Explanation", "Examples"],
+                        materials_needed=["Course materials"]
+                    ),
+                    LessonSection(
+                        title="Conclusion",
+                        content="Summary and review of key concepts",
+                        duration_minutes=10,
+                        activities=["Review", "Q&A"],
+                        materials_needed=[]
+                    )
+                ],
+                assessment_methods=["Formative assessment", "Question and answer"],
+                homework_suggestions=["Review notes", "Practice exercises"],
+                additional_resources=["Course textbook", "Online resources"],
+                generated_from_resources=[],
+                created_by="",
+                created_at=datetime.utcnow(),
+                updated_at=datetime.utcnow()
+            )
+        
+        async def answer_question(self, question, context="", subject_area=None, grade_level=None, user_id=None):
+            return {
+                "answer": f"I understand you're asking about: {question}. Advanced AI processing is temporarily unavailable, but I can provide basic assistance.",
+                "confidence_score": 0.3,
+                "sources": [],
+                "suggestions": ["Advanced AI temporarily unavailable", "Try again later"],
+                "context_used": False,
+                "model_used": "Fallback Service"
+            }
+    
+    openrouter_ai_service = FallbackOpenRouterService()
