@@ -635,7 +635,7 @@ export default function AIAssistantPage() {
                     <div className="text-6xl mb-4">📝</div>
                     <p className="text-lg font-medium mb-2">Ready to Generate</p>
                     <p className="text-sm">
-                      Fill out the lesson details and click "Generate Lesson Plan" to create your AI-powered lesson!
+                      Fill out the lesson details and click &quot;Generate Lesson Plan&quot; to create your AI-powered lesson!
                     </p>
                   </div>
                 )}

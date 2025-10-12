@@ -698,7 +698,7 @@ export const offlineCapableAPI = (originalAPI) => {
   };
 };
 
-export default {
+const offlineUtils = {
   connectionStatus,
   cacheData,
   getCachedData,
@@ -718,3 +718,5 @@ export default {
   offlineCapableAPI,
   offlineCapableRequest
 };
+
+export default offlineUtils;

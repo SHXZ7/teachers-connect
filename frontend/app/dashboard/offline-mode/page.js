@@ -51,7 +51,7 @@ export default function OfflinePage() {
       offlineUtils.connectionStatus.removeListener(handleConnectionChange);
       window.removeEventListener('offline-sync-completed', handleAutoSyncCompleted);
     };
-  }, []);
+  }, [handleSync, loadAllData]);
 
   const loadStats = async () => {
     const stats = await offlineUtils.getActionsStats();
@@ -616,13 +616,13 @@ export default function OfflinePage() {
             <div className="flex items-start space-x-3">
               <span className="text-blue-500">📱</span>
               <div>
-                <strong>Automatic Caching:</strong> When you're online, Teachers Connect automatically caches your data so you can access it offline.
+                <strong>Automatic Caching:</strong> When you&apos;re online, Teachers Connect automatically caches your data so you can access it offline.
               </div>
             </div>
             <div className="flex items-start space-x-3">
               <span className="text-green-500">⚡</span>
               <div>
-                <strong>Offline Actions:</strong> When offline, your actions (create, update, delete) are queued and will sync automatically when you're back online.
+                <strong>Offline Actions:</strong> When offline, your actions (create, update, delete) are queued and will sync automatically when you&apos;re back online.
               </div>
             </div>
             <div className="flex items-start space-x-3">

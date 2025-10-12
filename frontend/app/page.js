@@ -541,8 +541,8 @@ function HomeContent() {
               <p className={`transition-colors duration-500 ${
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                "Teachers Connect has been a game-changer for our remote school. The AI-generated lessons 
-                kept my students learning even when I was sick for a week. Amazing platform!"
+                "                &quot;Teachers Connect has been a game-changer for our remote school. The AI-generated lessons 
+                kept my students learning even when I was sick for a week. Amazing platform!&quot;"
               </p>
               <div className="flex text-yellow-400 mt-4">
                 {"★".repeat(5)}
@@ -568,8 +568,8 @@ function HomeContent() {
               <p className={`transition-colors duration-500 ${
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                "The offline capability is incredible! Our internet is unreliable, but I can still 
-                access all teaching materials and share resources with other teachers nearby."
+                "                &quot;The offline capability is incredible! Our internet is unreliable, but I can still 
+                access all teaching materials and share resources with other teachers nearby.&quot;"
               </p>
               <div className="flex text-yellow-400 mt-4">
                 {"★".repeat(5)}
@@ -595,8 +595,8 @@ function HomeContent() {
               <p className={`transition-colors duration-500 ${
                 theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
               }`}>
-                "The multilingual support helped me translate lessons into Portuguese effortlessly. 
-                My students now have access to quality content in their native language."
+                "                &quot;The multilingual support helped me translate lessons into Portuguese effortlessly. 
+                My students now have access to quality content in their native language.&quot;"
               </p>
               <div className="flex text-yellow-400 mt-4">
                 {"★".repeat(5)}
@@ -690,7 +690,7 @@ function HomeContent() {
             <div className="text-center">
               <div className="text-3xl mb-2">🤝</div>
               <div className="text-white font-semibold">24/7 Support</div>
-              <div className="text-blue-200 text-sm">We're here to help</div>
+              <div className="text-blue-200 text-sm">We&apos;re here to help</div>
             </div>
           </div>
         </div>
