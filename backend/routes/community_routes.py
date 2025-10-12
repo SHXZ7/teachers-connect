@@ -29,9 +29,23 @@ security = HTTPBearer()
 JWT_SECRET = os.getenv("JWT_SECRET")
 JWT_ALGORITHM = os.getenv("JWT_ALGORITHM")
 
-# Create uploads directory for community content
+# Create uploads directory for community content with error handling
 UPLOAD_DIR = Path("uploads/community")
-UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+try:
+    UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"✅ Upload directory created: {UPLOAD_DIR}")
+except PermissionError:
+    # Fallback to temporary directory if we can't create uploads
+    import tempfile
+    temp_dir = tempfile.mkdtemp(prefix="community_uploads_")
+    UPLOAD_DIR = Path(temp_dir)
+    print(f"⚠️ Warning: Cannot create upload directory. Using temp directory: {UPLOAD_DIR}")
+except Exception as e:
+    # Final fallback
+    import tempfile
+    temp_dir = tempfile.mkdtemp(prefix="community_uploads_")
+    UPLOAD_DIR = Path(temp_dir)
+    print(f"❌ Error creating upload directory: {e}. Using temp directory: {UPLOAD_DIR}")
 
 # ============= WEBSOCKET ROUTES =============
 
