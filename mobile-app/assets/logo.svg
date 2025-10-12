@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle with Gradient -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF6B35;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#E55A2B;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.95" />
+      <stop offset="100%" style="stop-color:#F8FAFC;stop-opacity:0.9" />
+    </linearGradient>
+    <linearGradient id="starGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFA726;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Main Background Circle -->
+  <circle cx="60" cy="60" r="58" fill="url(#bgGradient)" stroke="#E55A2B" stroke-width="2"/>
+  
+  <!-- Inner Highlight Circle -->
+  <circle cx="60" cy="60" r="48" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  
+  <!-- Book Base -->
+  <rect x="35" y="40" width="50" height="35" rx="3" ry="3" fill="url(#bookGradient)" stroke="rgba(229,90,43,0.3)" stroke-width="1"/>
+  
+  <!-- Book Pages -->
+  <rect x="37" y="42" width="46" height="2" fill="rgba(255,107,53,0.6)"/>
+  <rect x="37" y="46" width="46" height="2" fill="rgba(255,107,53,0.4)"/>
+  <rect x="37" y="50" width="46" height="2" fill="rgba(255,107,53,0.4)"/>
+  <rect x="37" y="54" width="46" height="2" fill="rgba(255,107,53,0.4)"/>
+  
+  <!-- Book Binding -->
+  <rect x="35" y="40" width="6" height="35" rx="3" ry="3" fill="#E55A2B"/>
+  <rect x="36" y="42" width="4" height="31" fill="rgba(255,255,255,0.3)"/>
+  
+  <!-- Nova Star (Innovation Symbol) -->
+  <g transform="translate(70, 25)">
+    <!-- Star points -->
+    <path d="M8 2 L10 6 L14 6 L11 9 L12 13 L8 11 L4 13 L5 9 L2 6 L6 6 Z" fill="url(#starGradient)" stroke="#F59E0B" stroke-width="0.5"/>
+    <!-- Inner glow -->
+    <circle cx="8" cy="8" r="3" fill="rgba(255,167,38,0.4)"/>
+  </g>
+  
+  <!-- Education Rays/Lines (Knowledge Spreading) -->
+  <g transform="translate(60, 60)" opacity="0.6">
+    <line x1="-25" y1="-25" x2="-20" y2="-20" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="25" y1="-25" x2="20" y2="-20" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="-25" y1="25" x2="-20" y2="20" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round"/>
+    <line x1="25" y1="25" x2="20" y2="20" stroke="rgba(255,255,255,0.8)" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Edu Text Hint (Subtle) -->
+  <text x="60" y="88" font-family="Arial, sans-serif" font-size="8" font-weight="bold" text-anchor="middle" fill="rgba(255,255,255,0.9)">EDU</text>
+  <text x="60" y="98" font-family="Arial, sans-serif" font-size="6" font-weight="normal" text-anchor="middle" fill="rgba(255,255,255,0.7)">NOVA</text>
+</svg>

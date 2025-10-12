@@ -1,0 +1,64 @@
+<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+  <!-- Clean EduNova app icon design -->
+  <defs>
+    <!-- Violet gradient background -->
+    <radialGradient id="violetBackground" cx="0.5" cy="0.5" r="0.7">
+      <stop offset="0%" stop-color="#7C3AED"/>
+      <stop offset="100%" stop-color="#6D28D9"/>
+    </radialGradient>
+    
+    <!-- White book gradient -->
+    <linearGradient id="bookGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8F9FA"/>
+    </linearGradient>
+    
+    <!-- Drop shadow -->
+    <filter id="dropShadow">
+      <feDropShadow dx="2" dy="4" stdDeviation="3" flood-color="#000000" flood-opacity="0.15"/>
+    </filter>
+  </defs>
+  
+  <!-- Violet circular background -->
+  <circle cx="96" cy="96" r="85" fill="url(#violetBackground)" filter="url(#dropShadow)"/>
+  
+  <!-- Clean book icon design -->
+  <g transform="translate(96, 96)">
+    <!-- Main book -->
+    <g filter="url(#dropShadow)">
+      <!-- Left book cover -->
+      <rect x="-35" y="-28" width="30" height="45" rx="3" fill="url(#bookGradient)" stroke="#E0E0E0" stroke-width="1"/>
+      <!-- Right book cover -->
+      <rect x="5" y="-28" width="30" height="45" rx="3" fill="url(#bookGradient)" stroke="#E0E0E0" stroke-width="1"/>
+      <!-- Book spine -->
+      <rect x="-5" y="-28" width="10" height="45" fill="#8B5CF6"/>
+      
+      <!-- Book details -->
+      <!-- Left cover text lines -->
+      <line x1="-30" y1="-20" x2="-10" y2="-20" stroke="#7C3AED" stroke-width="1.5" opacity="0.8"/>
+      <line x1="-30" y1="-15" x2="-10" y2="-15" stroke="#7C3AED" stroke-width="1" opacity="0.6"/>
+      <line x1="-30" y1="-10" x2="-15" y2="-10" stroke="#7C3AED" stroke-width="1" opacity="0.6"/>
+      
+      <!-- Right cover text lines -->
+      <line x1="10" y1="-20" x2="30" y2="-20" stroke="#7C3AED" stroke-width="1.5" opacity="0.8"/>
+      <line x1="10" y1="-15" x2="30" y2="-15" stroke="#7C3AED" stroke-width="1" opacity="0.6"/>
+      <line x1="10" y1="-10" x2="25" y2="-10" stroke="#7C3AED" stroke-width="1" opacity="0.6"/>
+      
+      <!-- Spine binding lines -->
+      <line x1="-5" y1="-22" x2="5" y2="-22" stroke="#7C3AED" stroke-width="0.8"/>
+      <line x1="-5" y1="-10" x2="5" y2="-10" stroke="#7C3AED" stroke-width="0.8"/>
+      <line x1="-5" y1="2" x2="5" y2="2" stroke="#7C3AED" stroke-width="0.8"/>
+    </g>
+    
+    <!-- Educational star accent -->
+    <g transform="translate(25, -25)">
+      <path d="M 0,-8 L 2,-2 L 8,0 L 2,2 L 0,8 L -2,2 L -8,0 L -2,-2 Z" 
+            fill="#FFD700" opacity="0.9" filter="url(#dropShadow)"/>
+      <circle cx="0" cy="0" r="3" fill="#FFFFFF" opacity="0.8"/>
+    </g>
+  </g>
+  
+  <!-- EduNova text (small) -->
+  <text x="96" y="150" text-anchor="middle" font-family="Arial, sans-serif" 
+        font-size="14" font-weight="bold" fill="#FFFFFF" opacity="0.9">EduNova</text>
+</svg>
