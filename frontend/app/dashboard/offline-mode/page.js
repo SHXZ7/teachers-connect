@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
 import offlineUtils from '@/utils/offline';
 
@@ -73,13 +73,13 @@ export default function OfflinePage() {
     }
   };
 
-  const loadAllData = async () => {
+  const loadAllData = useCallback(async () => {
     await loadStats();
     await loadCacheInfo();
     await loadCachedFiles();
-  };
+  }, []);
 
-  const handleSync = async () => {
+  const handleSync = useCallback(async () => {
     if (!isOnline) {
       setSyncMessage('Cannot sync while offline');
       return;
@@ -111,7 +111,7 @@ export default function OfflinePage() {
     
     // Reset status after 3 seconds
     setTimeout(() => setSyncStatus('idle'), 3000);
-  };
+  }, [isOnline, loadAllData]);
 
   const clearAllData = async () => {
     if (confirm('Are you sure you want to clear all offline data? This cannot be undone.')) {
