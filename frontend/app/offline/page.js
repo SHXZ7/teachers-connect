@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useTheme } from '@/src/contexts/ThemeContext';
-import offlineUtils from '@/src/utils/offline';
+import { useTheme } from '@/contexts/ThemeContext';
+import offlineUtils from '@/utils/offline';
 
 export default function OfflinePage() {
   const { theme } = useTheme();
